@@ -6,6 +6,7 @@ import { registercommand } from "../discordbot/slashcommands";
 import { CommandInteraction, Interaction, MessageAttachment } from "discord.js";
 import { Importinteraction } from "../discordbot";
 import { getwebpage } from "../webpage";
+import { isscamurl } from "./urlhaus";
 const safebrowsingapi = require('@googleapis/safebrowsing')
 
 
@@ -82,7 +83,9 @@ async function  urlembedbuilder(url:string) {
     var scan:any = await scanurl(url)
     var embed = new Embed()
     var ipin = await splitobjecttostring(scan.ip)
+    var scam = await isscamurl(url)
     embed.addField({name:"IP", value:ipin,inline:true})
+    embed.addField({name:"Scam Url \n urlhaus", value:scam,inline:true})
   //  embed.setImage("attachment://unkonwn.png")
     
 

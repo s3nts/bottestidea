@@ -82,3 +82,4 @@ tsconfig.prod.tsbuildinfo
 
 
 package-lock.json
+testdata/
